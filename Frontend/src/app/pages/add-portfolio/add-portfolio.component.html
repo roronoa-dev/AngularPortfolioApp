@@ -1,0 +1,19 @@
+<form (ngSubmit)="addPortfolio()">
+    <h2>Add Technical Skills</h2>
+    <div *ngFor="let skill of portfolioData.skills.technical_skills; let i = index">
+      <input [(ngModel)]="skill.skill" name="skill{{i}}" placeholder="Skill" required>
+      <input [(ngModel)]="skill.experience" name="experience{{i}}" placeholder="Experience" required>
+    </div>
+    <button type="button" (click)="portfolioData.skills.technical_skills.push({ skill: '', experience: '' })">Add Technical Skill</button>
+  
+    <h2>Add Soft Skills</h2>
+    <div *ngFor="let skill of portfolioData.skills.soft_skills; let i = index">
+      <input [(ngModel)]="portfolioData.skills.soft_skills[i]" name="softSkill{{i}}" placeholder="Soft Skill" required>
+    </div>
+    <button type="button" (click)="portfolioData.skills.soft_skills.push('')">Add Soft Skill</button>
+  
+    <!-- Repeat similar structure for projects, work_experience, education, certifications_and_awards -->
+  
+    <button type="submit">Submit</button>
+  </form>
+  

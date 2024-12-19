@@ -1,0 +1,247 @@
+<form *ngIf="portfolio" (ngSubmit)="editPortfolio()" class="container mt-5">
+  <div class="row" style="margin-top: 100px;">
+    <div class="col-md-6">
+      <div class="containerr">
+        <div class="mb-3">
+          <h2>Edit Personal Details</h2>
+          <label for="name" class="form-label">Name:</label>
+          <input [(ngModel)]="portfolio.introduction.name" name="name" id="name" class="form-control" placeholder="Name" required pattern="[A-Za-z\s]+" minlength="2" maxlength="50">
+        </div>
+        <div class="mb-3">
+          <label for="title" class="form-label">Title:</label>
+          <input [(ngModel)]="portfolio.introduction.title" name="title" id="title" class="form-control"
+            placeholder="Title" required>
+        </div>
+        <div class="mb-3">
+          <label for="bio" class="form-label">Bio:</label>
+          <textarea [(ngModel)]="portfolio.introduction.bio" name="bio" id="bio" class="form-control"
+            placeholder="Add your bio" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="profile_picture" class="form-label">Profile pic URL:</label>
+          <input [(ngModel)]="portfolio.introduction.profile_picture" name="profile_picture_" id="profile_picture"
+            class="form-control" placeholder="Profile picture URL" required>
+        </div>
+        <div class="mb-3">
+          <label for="resumeUrl" class="form-label">resume URL:</label>
+          <input [(ngModel)]="portfolio.introduction.resumeUrl" name="resumeUrl" id="resumeUrl" class="form-control" placeholder="Resume URL" required pattern="https?://.+">
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">email :</label>
+          <input [(ngModel)]="portfolio.contact_information.email" name="email" id="email" class="form-control"
+            placeholder="email" required>
+        </div>
+        <div class="mb-3">
+          <label for="phone" class="form-label">phone no :</label>
+          <input [(ngModel)]="portfolio.contact_information.phone" name="phone" id="phone" class="form-control"
+            placeholder="phone" required>
+        </div>
+        <div class="mb-3">
+          <label for="github" class="form-label">Github URL:</label>
+          <input [(ngModel)]="portfolio.contact_information.social_links.github" name="github" id="github"
+            class="form-control" placeholder="Github URL" required>
+        </div>
+        <div class="mb-3">
+          <label for="linkedin" class="form-label">LinkedIn URL:</label>
+          <input [(ngModel)]="portfolio.contact_information.social_links.linkedin" name="linkedin" id="linkedin"
+            class="form-control" placeholder="LinkedIn URL" required>
+        </div>
+        <div class="mb-3">
+          <label for="twitter" class="form-label">Twitter URL:</label>
+          <input [(ngModel)]="portfolio.contact_information.social_links.twitter" name="twitter" id="twitter"
+            class="form-control" placeholder="Twitter URL" required>
+        </div>
+      </div>
+      <div class="containerr">
+        <h2>Edit Technical Skills</h2>
+        <div style="display: flex; gap: 4px; padding: 4px;"
+          *ngFor="let skill of portfolio.skills.technical_skills; let i = index" class="mb-3">
+          <div class="row">
+            <div class="col">
+              <input [(ngModel)]="portfolio.skills.technical_skills[i].skill" name="skill{{i}}" class="form-control"
+                placeholder="Skill" required>
+            </div>
+            <div class="col">
+              <input [(ngModel)]="portfolio.skills.technical_skills[i].experience" name="experience{{i}}"
+                class="form-control" placeholder="Experience" required>
+            </div>
+            <div class="col">
+              <input [(ngModel)]="portfolio.skills.technical_skills[i].icon" name="icon{{i}}" class="form-control"
+                placeholder="Fontawesome Icon for skill" required>
+            </div>
+          </div>
+          <button type="button" (click)="portfolio.skills.technical_skills.splice(i, 1);"
+            class="btn btn-danger mb-3">Delete</button>
+        </div>
+        <button type="button" (click)="portfolio.skills.technical_skills.push({ skill: '', experience: '' })"
+          class="btn btn-primary mb-3">Add Technical Skill</button>
+
+      </div>
+      <br>
+      <!-- ------ -->
+      <div class="containerr">
+        <h2>education</h2>
+        <div *ngFor="let education of portfolio.education; let i = index" class="mb-3">
+          <label for="educationDegree{{i}}" class="form-label">Degree:</label>
+          <input [(ngModel)]="portfolio.education[i].degree" name="educationDegree{{i}}" id="educationDegree{{i}}"
+            class="form-control" placeholder="Degree name" required>
+          <label for="educationinstitution{{i}}" class="form-label">institution:</label>
+          <input [(ngModel)]="portfolio.education[i].institution" name="educationinstitution{{i}}"
+            id="educationinstitution{{i}}" class="form-control" placeholder="Institute name" required>
+          <label for="educationinstitution{{i}}" class="form-label">Years:</label>
+          <input [(ngModel)]="portfolio.education[i].dates_attended" name="educationinstitution{{i}}"
+            id="educationinstitution{{i}}" class="form-control" placeholder="dates_attended" required>
+          <label for="Subjects{{i}}" class="form-label">Subjects:</label>
+          <div style="display: flex; gap: 4px; padding: 4px;"
+            *ngFor="let relevant_coursework of education.relevant_coursework; let j = index; trackBy: trackByIndex">
+            <input [(ngModel)]="education.relevant_coursework[j]" name="relevant_coursework{{i}}-{{j}}"
+              id="relevant_coursework{{i}}-{{j}}" class="form-control mb-2" placeholder="Courses">
+            <button type="button" (click)="removerelevant_coursework(i, j)"
+              class="btn btn-danger btn-sm">Remove</button>
+          </div>
+
+          <button type="button" (click)="addrelevant_coursework(i)" class="btn btn-primary mt-2">Add Course</button>
+        </div>
+      </div>
+      <!--  -------------------------------------------------->
+      <div class="containerr">
+        <h2>Certifications</h2>
+        <div *ngFor="let cert of portfolio.certifications_and_awards; let i = index; trackBy: trackByIndex"
+          class="mb-3">
+          <div class="containerr">
+            <label for="title{{i}}" class="form-label">Title:</label>
+            <input [(ngModel)]="cert.title" name="title{{i}}" id="title{{i}}" class="form-control" placeholder="Title"
+              required>
+
+            <label for="issuing_organization{{i}}" class="form-label">Issuing Organization:</label>
+            <input [(ngModel)]="cert.issuing_organization" name="issuing_organization{{i}}"
+              id="issuing_organization{{i}}" class="form-control" placeholder="Issuing Organization" required>
+
+            <label for="date_obtained{{i}}" class="form-label">Date Obtained:</label>
+            <input [(ngModel)]="cert.date_obtained" name="date_obtained{{i}}" id="date_obtained{{i}}"
+              class="form-control" placeholder="Date Obtained" required>
+
+            <label for="description{{i}}" class="form-label">Description:</label>
+            <input [(ngModel)]="cert.description" name="description{{i}}" id="description{{i}}" class="form-control"
+              placeholder="Description" required>
+
+            <button type="button" (click)="removeCertification(i)" class="btn btn-danger mt-2">Remove</button>
+          </div>
+        </div>
+
+        <button type="button"
+          (click)="portfolio.certifications_and_awards.push({ title: '', issuing_organization: '',date_obtained: '', description: ''})"
+          class="btn btn-primary mb-3">Add Award Or Certificate</button>
+        <br>
+      </div>
+
+      <div class="containerr">
+
+        <h2>Edit Soft Skills</h2>
+        <div style="display: flex; gap: 4px; padding: 4px;"
+          *ngFor="let skill of portfolio.skills.soft_skills; let i = index trackBy: trackByIndex" class="mb-3">
+          <input [(ngModel)]="portfolio.skills.soft_skills[i]" name="softSkill{{i}}" class="form-control"
+            placeholder="Soft Skill" required>
+          <button type="button" (click)="portfolio.skills.soft_skills.splice(i, 1);"
+            class="btn btn-danger mb-3">Delete</button>
+
+
+        </div>
+        <button type="button" (click)="portfolio.skills.soft_skills.push('')" class="btn btn-primary mb-3">Add Soft
+          Skill</button>
+
+      </div>
+
+
+    </div>
+
+    <div class="col-md-6">
+
+
+      <div class="containerr">
+        <h2>Edit Projects</h2>
+        <div *ngFor="let project of portfolio.projects; let i = index" class="mb-3">
+          <div class="containerr">
+            <label for="projectTitle{{i}}" class="form-label">Title:</label>
+            <input [(ngModel)]="portfolio.projects[i].title" name="projectTitle{{i}}" id="projectTitle{{i}}"
+              class="form-control" placeholder="Project Title" required>
+            <label for="projectDescription{{i}}" class="form-label">Description:</label>
+            <textarea [(ngModel)]="portfolio.projects[i].description" name="projectDescription{{i}}"
+              id="projectDescription{{i}}" class="form-control" placeholder="Project Description" required></textarea>
+            <label for="projectTechnologies{{i}}" class="form-label">Technologies:</label>
+            <input [(ngModel)]="portfolio.projects[i].technologies" name="projectTechnologies{{i}}"
+              id="projectTechnologies{{i}}" class="form-control" placeholder="Project Technologies" required>
+            <label for="projectRole{{i}}" class="form-label">Role:</label>
+            <input [(ngModel)]="portfolio.projects[i].role" name="projectRole{{i}}" id="projectRole{{i}}"
+              class="form-control" placeholder="Project Role" required>
+            <label for="projectLiveDemo{{i}}" class="form-label">Live Demo URL:</label>
+            <input [(ngModel)]="portfolio.projects[i].live_demo" name="projectLiveDemo{{i}}" id="projectLiveDemo{{i}}"
+              class="form-control" placeholder="Live Demo URL" required>
+            <label for="projectSourceCode{{i}}" class="form-label">Source Code URL:</label>
+            <input [(ngModel)]="portfolio.projects[i].source_code" name="projectSourceCode{{i}}"
+              id="projectSourceCode{{i}}" class="form-control" placeholder="Source Code URL" required>
+            <label for="projectMedia{{i}}" class="form-label">Media:</label>
+            <div style="display: flex; gap: 4px; padding: 4px;"
+              *ngFor="let mediaUrl of project.media; let j = index; trackBy: trackByIndex">
+              <input [(ngModel)]="project.media[j]" name="projectMedia{{i}}-{{j}}" id="projectMedia{{i}}-{{j}}"
+                class="form-control mb-2" placeholder="Media URL">
+              <button type="button" (click)="removeMediaUrl(i, j)" class="btn btn-danger btn-sm">Remove</button>
+            </div>
+
+            <button type="button" (click)="addMediaUrl(i)" class="btn btn-primary mt-2">Add Media URL</button>
+            <button type="button" (click)="removeProject(i)" class="btn btn-danger mt-2">Remove</button>
+
+          </div>
+        </div>
+        <button type="button"
+          (click)="portfolio.projects.push({ title: '', description: '', technologies: [], role: '', live_demo: '', source_code: '', media: [] })"
+          class="btn btn-primary mb-3">Add Project</button>
+
+      </div>
+
+
+      <div class="containerr">
+        <h2>Edit Experience</h2>
+        <div *ngFor="let project of portfolio.work_experience; let i = index" class="mb-3">
+          <div class="containerr">
+            <label for="workTitle{{i}}" class="form-label">Job role title:</label>
+            <input [(ngModel)]="portfolio.work_experience[i].job_title" name="workTitle{{i}}" id="workTitle{{i}}"
+              class="form-control" placeholder="Job Role Title" required>
+            <label for="workOrg{{i}}" class="form-label">Organization Name:</label>
+            <input [(ngModel)]="portfolio.work_experience[i].company_name" name="workOrg{{i}}" id="workOrg{{i}}"
+              class="form-control" placeholder="work Organization" required>
+            <label for="duration{{i}}" class="form-label">Serving Period:</label>
+            <input [(ngModel)]="portfolio.work_experience[i].duration" name="duration{{i}}" id="duration{{i}}"
+              class="form-control" placeholder="Serving Period" required>
+            <label for="responsibilities{{i}}" class="form-label">responsibilities:</label>
+            <div style="display: flex; gap: 4px; padding: 4px;"
+              *ngFor="let responsibilities of portfolio.work_experience[i].responsibilities; let j = index trackBy: trackByIndex">
+              <input [(ngModel)]="portfolio.work_experience[i].responsibilities[j]" name="responsibilities{{i}}-{{j}}"
+                id="responsibilities{{i}}-{{j}}" class="form-control mb-2" placeholder="responsibilities">
+              <button type="button" (click)="removeresponsiblity(i, j)" class="btn btn-danger btn-sm">Remove</button>
+            </div>
+            <button type="button" (click)="addResp(i)" class="btn btn-primary mt-2">Add responsibilitie</button> <br>
+            <label for="technologies{{i}}" class="form-label">tech used:</label>
+            <div style="display: flex; gap: 4px; padding: 4px;"
+              *ngFor="let technologies_used of portfolio.work_experience[i].technologies_used; let j = index trackBy: trackByIndex">
+              <input [(ngModel)]="portfolio.work_experience[i].technologies_used[j]" name="technologies_used{{i}}-{{j}}"
+                id="technologies_used{{i}}-{{j}}" class="form-control mb-2" placeholder="technologies">
+              <button type="button" (click)="removetech(i, j)" class="btn btn-danger btn-sm">Remove</button>
+            </div>
+            <button type="button" (click)="addTech(i)" class="btn btn-primary mt-2">Add Tech</button>
+            <button type="button" (click)="removeExperience(i)" class="btn btn-danger mt-2">Remove</button>
+          </div>
+
+
+        </div>
+        <button type="button"
+          (click)="portfolio.work_experience.push({ job_title: '', company_name: '',duration:'',  responsibilities: [],technologies_used: [] })"
+          class="btn btn-primary mb-3">Add Experience</button>
+
+
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-success mt-3 fixed-bottom-btn">Submit</button>
+
+</form>

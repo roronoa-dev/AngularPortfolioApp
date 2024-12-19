@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* Make the navbar fixed to the top */
+.navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 1030;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  }
+  
+  /* Add some padding to the top of the page to prevent content overlap */
+  body {
+    padding-top: 70px; /* Adjust based on the height of your navbar */
+  }
+  
+  /* Style the navbar */
+  .navbar-brand {
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 24px;
+  }
+  
+  .navbar-nav .nav-link {
+    font-family: 'Arial', sans-serif;
+    font-weight: 500;
+    color: #555;
+  }
+  
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+  
+.navbar {
+  transition: background-color 0.3s ease;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: #007bff;
+}
+
+.nav-link {
+  font-weight: 500;
+  color: #555;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #007bff;
+}
+
+.nav-link.active {
+  color: #007bff;
+}
+
+.shadow-sm {
+  box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+}

@@ -1,0 +1,257 @@
+
+  
+<section id="home" style="height: 90vh;">
+    <div class="row" >
+        <div class="col-lg-2"></div>
+        <div class="col-lg-4"  style="display: flex; align-items: center; justify-content: center;">
+
+            <img   width="80%" height="100%" style="border-radius: 30% 70% 68% 32% / 41% 32% 68% 59%; "
+             src={{portfolio.introduction.profile_picture}} alt="" srcset="">
+             <!-- <img width="100%" style="border-radius: 50%;" src="../../../assets/me.jpg" alt=""> -->
+
+
+        </div>
+        <div class="col-lg-4"
+            style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+            <h6>Hello I'm </h6>
+            <h1>{{portfolio.introduction.name}}</h1>
+            <h3 style="color: grey;">{{ portfolio.introduction.title }}</h3>
+            <div class="buttons">
+                <a [href]="portfolio.introduction.resumeUrl"> <input class="pdfButton" type="button" value="Download CV"></a>
+               
+                <a [routerLink]="[]" fragment="contact"> <input class="contactInfo" type="button" value="Contact info"></a>
+              </div>
+              
+            <div class="mediaIcons">
+                <a href="{{ portfolio.contact_information.social_links.linkedin }}">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://www.github.com" target="_blank" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.twitter.com" target="_blank" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i></a>
+            </div>
+
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+
+
+</section>
+<div data-aos="flip-left">
+    <section id="aboutSection">
+        <div class="row">
+            <h1 id="aboutme" style="text-align: center;">About Me</h1>
+            <br><br><br><br><br>
+            <div class="col-lg-1">
+               
+            </div>
+            <div class="col-lg-5">
+                <div class="aboutCardContainer">
+                    <div class="aboutCard">
+                        <div class="cardContents">
+                            <i class="fas fa-briefcase"></i>
+                            <h3>Experience</h3>
+                            <p>{{totalWorkExperience}} - Years</p>
+                            <h6>{{ portfolio.introduction.title }}</h6>
+                            
+    
+                        </div>
+                        
+                      
+    
+                    </div>
+                    <div class="aboutCard">
+                        <div class="cardContents" *ngFor="let educationItem of portfolio.education">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h3>Education</h3>
+                            <p> {{educationItem.degree }}</p>
+                            <p style="margin-top: -15px;">{{educationItem.institution }}</p>
+                            <p style="margin-top: -15px;"> ({{ educationItem.dates_attended }})</p>
+                        </div>
+                      
+                    </div>
+                    
+    
+                   
+                </div>
+                <br>
+                <p>{{ portfolio.introduction.bio }}</p>
+            </div>
+            <div class="col-lg-5">
+               <div class="aboutImgContainer">
+                <img src="../../../assets/boy2.jpg" alt="">
+               </div>
+            </div>
+            <div class="col-lg-1"></div>
+    
+        </div>
+    </section>
+</div>
+
+<br>
+<section id="skills">
+    <div class="skillCardContainer">
+        <h1 style="text-align: center;"> Technical skills</h1>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-4 mb-4" *ngFor="let skill of portfolio.skills.technical_skills; let i = index">
+                    <div class="card" [ngStyle]="{'background-color': getColor(i)}">
+                        <div class="card-body d-flex ">
+                           <div style="font-size: 26px; margin-top: -5px; padding-right: 10px;">
+                            <i  [class]="skill.icon" style="margin-right: 10px;"></i>
+                           </div>
+                            <div>
+                                <h5 class="card-title">{{ skill.skill }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Experience: {{ skill.experience }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+<section id="Projects">
+    <h1 style="text-align: center;">Projects</h1>
+  
+    <div class="row" style="margin-top: 10px;">
+      <div class="col-md-6" style="display: flex; align-items: center; justify-content: center;" *ngFor="let project of portfolio.projects">
+        <div class="projectCard">
+          <div class="projectImage">
+            <img src={{project.media[0]}} alt="">
+          </div>
+          <div class="projectTitle" style="margin-top: 10px;">
+            <h3>{{ project.title }}</h3>
+          </div>
+          <div class="Projectbuttons">
+           <a [href]="project.live_demo"> <button class="pdfButton">live demo</button></a>
+            <button class="pdfButton" (click)="viewProjectDetails(project._id)">Project details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+
+<!-- --------------------- -->
+<div class="container mt-5">
+    <div *ngIf="portfolio">
+        <!-- Introduction Section -->
+     
+
+
+        <!-- Technical Skills -->
+       
+        .
+        <!-- <div class="card-group mb-4">
+            <div class="card" *ngFor="let skill of portfolio.skills.technical_skills">
+                <div class="card-body">
+                    <h5 class="card-title">{{ skill.skill }}</h5>
+                    <p class="card-text">Experience: {{ skill.experience }}</p>
+                </div>
+            </div>
+        </div> -->
+        
+        <!-- Soft Skills -->
+         
+        
+<section >
+    <div class="row">
+        <h4>Soft Skills</h4>
+        <div class="col-lg-6">
+            <img style="width: 100%;" src="../../../assets/softskill2.png" alt="" srcset="">
+
+        </div>
+        <div class="col-lg-6">
+            <div class="skill-container">
+                <div class="skill-card" *ngFor="let skill of portfolio.skills.soft_skills">
+                    <h5 class="card-title">{{ skill }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<br>
+
+
+        <!-- Work Experience -->
+       <section id="experience">
+        <h4>My Professional Experience</h4>
+        <br>
+        <div class="work-experience mb-4">
+            <div class="experience-item" *ngFor="let experience of portfolio.work_experience">
+              <div class="experience-header">
+                <h3 class="job-title">{{ experience.job_title }}</h3>
+                <p class="company-duration">{{ experience.company_name }} ({{ experience.duration }})</p>
+              </div>
+              <div class="experience-body">
+                <ul class="responsibilities">
+                  <li *ngFor="let responsibility of experience.responsibilities">{{ responsibility }}</li>
+                </ul>
+                <p class="technologies-used">Technologies Used: {{ experience.technologies_used.join(', ') }}</p>
+              </div>
+            </div>
+          </div>
+       </section>
+          
+    
+        
+        <!-- Certifications and Awards -->
+ <section id="awards">
+    <h4>Certifications and Awards</h4>
+    <div class="row">
+          
+        <div class="col-lg-6">
+            <div class="skill-container">
+                <div class="skill-card" *ngFor="let cert of portfolio.certifications_and_awards">
+                    <h5 class="card-title">{{ cert.title }}</h5>
+                    <p class="card-text">{{ cert.issuing_organization }} ({{ cert.date_obtained }})</p>
+                    <p class="card-text">{{ cert.description }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <img style="width: 100%; height: 300px; border-radius: 25px;" src="../../../assets/award.jpeg" alt="" srcset="">
+
+        </div>
+    </div>
+    
+ </section>
+       
+    </div>
+</div>
+<div id="contact" class="container py-5">
+    <div class="row align-items-center">
+      <div class="col-md-6 mb-4 mb-md-0">
+        <img src="../../../assets/contact.jpg" alt="Contact" class="img-fluid rounded">
+      </div>
+      <div class="col-md-6" style="padding-left: 30px;">
+        <h2 class="mb-4">Contact Information</h2>
+        <ul class="list-unstyled">
+          <li class="mb-3">
+            <i class="fas fa-envelope"></i>Email: <a style="text-decoration: none;" [href]="'mailto:'+ portfolio.contact_information.email">{{portfolio.contact_information.email}}</a> 
+          </li>
+          <li class="mb-3">
+            <i class="fas fa-phone"></i> Phone: <a style="text-decoration: none;" [href]="'tel:' + portfolio.contact_information.phone">{{ portfolio.contact_information.phone }}</a>
+          </li>
+        
+        </ul>
+        <div class="mediaIcons">
+            <a href="{{ portfolio.contact_information.social_links.linkedin }}">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://www.github.com" target="_blank" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.twitter.com" target="_blank" aria-label="Twitter">
+                <i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  

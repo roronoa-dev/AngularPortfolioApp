@@ -1,0 +1,26 @@
+.btn-danger{
+    height: 38px;
+}
+
+.fixed-bottom-btn {
+    border-radius: 0px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 50%; /* Center the button horizontally */
+    transform: translateX(-50%); /* Adjust the button's position to truly center it */
+    z-index: 1000; /* Ensure the button appears above other content */
+}
+.fixed-bottom-btn:hover{
+  background-color: rgb(12, 210, 19);
+  border: none;
+}
+
+.containerr{
+    border: 1px solid rgba(147, 146, 146, 0.61);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}

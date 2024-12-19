@@ -1,0 +1,27 @@
+<div *ngIf="project" class="container mt-4">
+    <!-- Project Media -->
+    <div class="row mt-4" style="padding-top: 100px;">
+      <div *ngFor="let media of project.media" class="col-md-4 mb-4">
+        <div class="card">
+          <img [src]="media" class="card-img-top" alt="{{ project.title }} image">
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Project Details -->
+  <div class="card mt-4">
+    <div class="card-body">
+      <h1 class="card-title">{{ project.title }}</h1>
+      <p class="card-text">{{ project.description }}</p>
+      <h3 class="card-subtitle mb-2 text-muted">Technologies Used:</h3>
+      <ul class="list-group list-group-flush">
+        <li *ngFor="let tech of project.technologies" class="list-group-item">{{ tech }}</li>
+      </ul>
+      <p class="card-text mt-2">Role: {{ project.role }}</p>
+      <a [href]="project.live_demo" class="btn btn-primary mr-2" target="_blank">Live Demo</a>
+      <a [href]="project.source_code" class="btn btn-secondary" target="_blank">Source Code</a>
+    </div>
+  </div>
+
+
